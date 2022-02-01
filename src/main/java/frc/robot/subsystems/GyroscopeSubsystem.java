@@ -15,22 +15,25 @@ import com.ctre.phoenix.sensors.PigeonIMU.CalibrationMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class GyroscopeSubsystem extends SubsystemBase {
-  private PigeonIMU gyro = new PigeonIMU(new TalonSRX(5));
+  // private PigeonIMU gyro = new PigeonIMU(new TalonSRX(5));
 
   public double[] getYawPitchRoll() {
-    double[] yawPitchRoll = new double[3];
-    gyro.getYawPitchRoll(yawPitchRoll);
-    return yawPitchRoll;
+    // double[] yawPitchRoll = new double[3];
+    // gyro.getYawPitchRoll(yawPitchRoll);
+    // return yawPitchRoll;
+    return new double[0];
   }
 
   public short[] getMegnetometer() {
-    short[] magnetometer = new short[3];
-    gyro.getRawMagnetometer(magnetometer);
-    return magnetometer;
+    // short[] magnetometer = new short[3];
+    // gyro.getRawMagnetometer(magnetometer);
+    // return magnetometer;
+    return new short[0];
   }
 
   public double getFusedHeading() {
-    return gyro.getFusedHeading();
+    // return gyro.getFusedHeading();
+    return 0;
   }
 
   public void calibrate() {

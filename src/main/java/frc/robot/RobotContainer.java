@@ -16,8 +16,11 @@ import frc.robot.subsystems.NavXGyroSubsystem;
 import frc.robot.subsystems.ShootSubsystem;
 import frc.robot.subsystems.TalonSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.commands.AutoCommand;
+import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShootCommand;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -36,10 +39,12 @@ public class RobotContainer {
   public static final LimelightDistance limelightDistance = new LimelightDistance();
 
   public static final Joystick leftJoy = new Joystick(0);
-  public static final Joystick rightJoy = new Joystick(0);
+  public static final Joystick rightJoy = new Joystick(1);
   public static final Joystick gamepad = new Joystick(0);
 
   public static final Command shootCommand = new ShootCommand(shootSubsystem);
+  public static final AutoCommand autoCommand = new AutoCommand(m_driveSubsystem, limelightDistance);
+  public static final Command driveCommand = new DriveCommand();
 
   public static SendableChooser<String> controlChooser = new SendableChooser<>();
 
@@ -55,10 +60,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    new JoystickButton(new Joystick(0), 3).whenHeld(autoCommand);
+  }
 
   /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
+   * Use this to pass the autonomous comm`and to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */

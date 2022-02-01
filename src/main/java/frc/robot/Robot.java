@@ -87,9 +87,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    // new DriveCommand().schedule();
-
-    RobotContainer.shootCommand.schedule();
+    RobotContainer.driveCommand.schedule();
+    // RobotContainer.shootCommand.schedule();
 
     // new OrchestraCommand("gourmeg.chrp", Arrays.asList(
     //   RobotContainer.talonSubsystem.one

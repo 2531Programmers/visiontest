@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShootSubsystem extends SubsystemBase {
-  // private TalonSRX talon = new TalonSRX(11);
+  private TalonSRX talon = new TalonSRX(11);
 
   public void shoot(double power) {
-    // talon.set(ControlMode.PercentOutput, power);
+    talon.set(ControlMode.PercentOutput, power);
   }
 
   public void stop() {
@@ -23,7 +23,7 @@ public class ShootSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // double rpm = talon.getSelectedSensorVelocity() / 2048.0 * 10.0 * 60.0;
-    // SmartDashboard.putNumber("RPM", rpm);
+    double rpm = talon.getSelectedSensorVelocity() / 2048.0 * 10.0 * 60.0;
+    SmartDashboard.putNumber("RPM", rpm);
   }
 }

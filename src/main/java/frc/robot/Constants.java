@@ -16,8 +16,8 @@ public final class Constants {
 
     public static final class Limelight {
 
-        public static final double LimelightMountingAngle = 42.0; // mounting angle of the camera     DEGREESEE
-        public static final double LimelightMountingHeight = 19.75; // height of camera off the ground  INCHES
+        public static final double LimelightMountingAngle = 43.0; // mounting angle of the camera     DEGREESEE
+        public static final double LimelightMountingHeight = 19.5; // height of camera off the ground  INCHES
         public static final double TargetHeight = 102.5;// height of target off the ground  INCHES  top is 98 bottom is 81
 
     }

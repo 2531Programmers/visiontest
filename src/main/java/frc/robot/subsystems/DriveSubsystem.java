@@ -10,10 +10,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
-  // private TalonSRX left1 = new TalonSRX(1);
-  // private TalonSRX left2 = new TalonSRX(2);
-  // private TalonSRX right1 = new TalonSRX(5);
-  // private TalonSRX right2 = new TalonSRX(4);
+  private TalonSRX frontLeft = new TalonSRX(1);
+  private TalonSRX backLeft = new TalonSRX(2);
+  private TalonSRX frontRight = new TalonSRX(5);
+  private TalonSRX backRight = new TalonSRX(4);
 
   public DriveSubsystem() {}
 
@@ -23,10 +23,10 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void tankDrive(double left, double right) {
-    // left1.set(ControlMode.PercentOutput, -left);
-    // left2.set(ControlMode.PercentOutput, -left);
-    // right1.set(ControlMode.PercentOutput, right);
-    // right2.set(ControlMode.PercentOutput, right);
+    frontLeft.set(ControlMode.PercentOutput, -left);
+    backLeft.set(ControlMode.PercentOutput, -left);
+    frontRight.set(ControlMode.PercentOutput, right);
+    backRight.set(ControlMode.PercentOutput, right);
   }
 
   public void arcadeDrive(double power, double steering) {
