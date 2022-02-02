@@ -12,7 +12,8 @@ import frc.robot.subsystems.LimelightDistance;
 public class AutoCommand extends CommandBase {
   private DriveSubsystem driveSubsystem;
   private LimelightDistance limelightDistance;
-  private PIDController pid = new PIDController(0.02, 0.01, 0);
+  private PIDController verticalPid = new PIDController(0.02, 0, 0);
+  private PIDController horizontalPid = new PIDController(0.01, 0, 0);
 
   public AutoCommand(DriveSubsystem subsystem, LimelightDistance limelightDistance) {
     this.driveSubsystem = subsystem;
@@ -22,17 +23,20 @@ public class AutoCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    pid.reset();
-    pid.setSetpoint(90);
+    verticalPid.setSetpoint(70);
+    verticalPid.reset();
+    horizontalPid.setSetpoint(0);
+    horizontalPid.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double distance = limelightDistance.getDistance();
-    double calculated = pid.calculate(distance);
-    System.out.println(calculated);
-    driveSubsystem.arcadeDrive(calculated, 0);
+    double vertical = verticalPid.calculate(limelightDistance.getDistance());
+    double horizontal = horizontalPid.calculate(limelightDistance.getX());
+    if (vertical > 0.5) vertical = 0.5;
+    if (vertical < -0.5) vertical = -0.5;
+    driveSubsystem.arcadeDrive(vertical, horizontal);
   }
 
   // Called once the command ends or is interrupted.
@@ -44,6 +48,7 @@ public class AutoCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pid.atSetpoint();
+    // return pid.atSetpoint();
+    return false;
   }
 }

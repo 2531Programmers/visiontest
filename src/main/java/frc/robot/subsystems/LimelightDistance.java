@@ -30,4 +30,8 @@ public class LimelightDistance extends SubsystemBase {
         double a2 = getY();
         return (Constants.Limelight.TargetHeight - Constants.Limelight.LimelightMountingHeight) / Math.tan((Constants.Limelight.LimelightMountingAngle + a2) * (Math.PI / 180.0));
     }
+
+    public double getX() {
+        return tx.getDouble(0);
+    }
 }

@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -35,6 +37,11 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    new Thread(() -> {
+      UsbCamera one = CameraServer.startAutomaticCapture(0);
+      UsbCamera two = CameraServer.startAutomaticCapture(1);
+    }).start();
 
     RobotContainer.controlChooser.addOption("None", "none");
     RobotContainer.controlChooser.addOption("Airplane tank", "airplane-tank");
